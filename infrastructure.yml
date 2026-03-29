@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: GoldenKiwi Infrastructure - EC2 Instance
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: dev
+
+Resources:
+  GoldenKiwiEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: !FindInMap [RegionMap, !Ref AWS::Region, AMI]
+      Tags:
+        - Key: Name
+          Value: !Sub "${EnvironmentName}-GoldenKiwi-Server"
+
+Mappings:
+  RegionMap:
+    eu-north-1:
+      AMI: ami-075449515af5df0d1
+    eu-west-1:
+      AMI: ami-0fed63ea358539e44
+
+Outputs:
+  InstanceId:
+    Description: EC2 Instance ID
+    Value: !Ref GoldenKiwiEC2
