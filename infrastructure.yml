@@ -18,6 +18,8 @@ Resources:
 
 Mappings:
   RegionMap:
+    us-east-1:
+      AMI: ami-0c02fb55956c7d316
     eu-north-1:
       AMI: ami-075449515af5df0d1
     eu-west-1:
